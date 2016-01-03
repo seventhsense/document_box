@@ -1,5 +1,5 @@
 $.fn.editable.defaults.mode = 'inline'
-$ ->
+$(document).on 'ready page:load',  ->
   # datatable
   $('#files').dataTable
     bProcessing: true
@@ -42,6 +42,7 @@ $ ->
   # select2
   $('#binder').select2
     width: 400
+    allowClear: true
     ajax:
       url: '/binder/source.json'
       dataType: 'json'
@@ -56,6 +57,8 @@ $ ->
           id: obj.id
           text: obj.title
         )
+
+  # select2 move 
   $('#binder').on "change", (e) ->
     id = $(@).val()
     unless id

@@ -1,4 +1,4 @@
-<h1>Document Box</h1>
+<h1 id="brand"><%= link_to 'Document Box', '/' %></h1>
 <p>Drag and drop files.</p>
 <%= label_tag :binder, 'Binder' %>
 <%= select_tag :binder, options_from_collection_for_select(@binders, :id, :title, @binder_id), include_blank: true %>
