@@ -1,0 +1,38 @@
+<h1>Document Box</h1>
+<button id="enable">Enable/Disable</button>
+<div id="main">
+  <div id="listing_upload"></div>
+ <table id="files" data-source="<%= documents_path(format: :json)%>">
+   <thead>
+     <tr>
+      <th>Label</th>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+     </tr>
+   </thead>
+   <tbody> 
+   </tbody>
+ </table>
+ 
+ <%# <div id="dd_space"> %>
+   <%# D&D HERE! %>
+ <%# </div> %>
+</div>
+
+<div id="dialog" title="Information"></div>
+<div id="upload">
+  <%= form_for Document.new, url: 'main/create', multiple: true do |f| %>
+    <%= f.file_field :file %>
+  <% end %>
+</div>
+
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
