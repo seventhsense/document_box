@@ -13,7 +13,8 @@
  *= require dataTables/jquery.dataTables
  *= require jquery-ui/dialog
  *= require tip-yellowsimple/tip-yellowsimple
-  *= require jquery-ui/datepicker
+ *= require select2
+ *= require jquery-ui/datepicker
  *= require editable/jquery-editable
  *= require_tree .
  *= require_self

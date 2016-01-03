@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102205212) do
+ActiveRecord::Schema.define(version: 20160103172746) do
+
+  create_table "binders", force: :cascade do |t|
+    t.string   "title"
+    t.text     "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "documents", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +29,14 @@ ActiveRecord::Schema.define(version: 20160102205212) do
     t.datetime "updated_at", null: false
     t.text     "content"
     t.string   "label"
+    t.integer  "binder_id"
   end
+
+  add_index "documents", ["author"], name: "index_documents_on_author"
+  add_index "documents", ["binder_id"], name: "index_documents_on_binder_id"
+  add_index "documents", ["content"], name: "index_documents_on_content"
+  add_index "documents", ["date"], name: "index_documents_on_date"
+  add_index "documents", ["label"], name: "index_documents_on_label"
+  add_index "documents", ["name"], name: "index_documents_on_name"
 
 end

@@ -3,7 +3,14 @@ Rails.application.routes.draw do
   get 'main/index' => 'main#index',  as: :documents
   get 'main/:id' => 'main#show', as: :document
   post 'main/create' => 'main#create'
+  patch 'main/:id' => 'main#update'
   put 'main/:id' => 'main#update'
+  delete 'main/:id' => 'main#destroy'
+  
+  get 'binder/source' => 'binders#source'
+  get 'binder/:id' => 'main#index'
+  post 'binder/create' => 'binders#create'
+  delete 'binder/:id' => 'binders#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

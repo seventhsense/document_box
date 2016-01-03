@@ -1,5 +1,8 @@
 class MainController < ApplicationController
   def index
+    @binders = Binder.all
+    @binder_id = params[:id]
+
     sSearch = params[:sSearch]
     iDisplayStart = params[:iDisplayStart].to_i
     iDisplayLength = params[:iDisplayLength].to_i
@@ -13,6 +16,7 @@ class MainController < ApplicationController
     sort_column = columns[iSortCol_0]
     sort_direction = sSortDir_0 == "desc" ? "desc" : "asc"
     @display_documents = Document
+      .filtered_by_binder(@binder_id)
       .where("label like :search or name like :search or author like :search or content like :search", search: "%#{sSearch}%")
       .order("#{sort_column} #{sort_direction}")
     @documents = @display_documents.page(page).per(per_page)
@@ -20,12 +24,12 @@ class MainController < ApplicationController
   end
 
   def show
+    @binders = Binder.all
     @document = Document.find(params[:id])
   end
 
   def create
     @document = Document.new document_params
-
     if @document.save
       render :json => { head: :ok }
     else
@@ -35,15 +39,18 @@ class MainController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
-    logger.debug params[:document]
-    logger.debug document_params
     if @document.update(document_params)
       render :json => { head: :ok }
     end
   end
 
+  def destroy
+    @document = Document.find(params[:id])
+    @document.destroy
+  end
+
   private
   def document_params
-    params.require(:document).permit(:label, :name, :author,  :file, :date, :content)
+    params.require(:document).permit(:label, :name, :author,  :file, :date, :content, :binder_id)
   end
 end

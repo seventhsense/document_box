@@ -1,8 +1,13 @@
 <h1>Document Box</h1>
+<p>Drag and drop files.</p>
+<%= label_tag :binder, 'Binder' %>
+<%= select_tag :binder, options_from_collection_for_select(@binders, :id, :title, @binder_id), include_blank: true %>
 <button id="enable">Enable/Disable</button>
+<%= link_to 'Create Binder', '', id: 'create_binder' %>
+<%= link_to 'Destroy Binder', '', id: 'destroy_binder' %>
 <div id="main">
   <div id="listing_upload"></div>
- <table id="files" data-source="<%= documents_path(format: :json)%>">
+ <table id="files" data-source="<%= current_path %>">
    <thead>
      <tr>
       <th>Label</th>
@@ -23,11 +28,31 @@
  <%# </div> %>
 </div>
 
-<div id="dialog" title="Information"></div>
-<div id="upload">
-  <%= form_for Document.new, url: 'main/create', multiple: true do |f| %>
-    <%= f.file_field :file %>
+<div class="display_none">
+ <div id="dialog" title="Information"></div>
+ 
+ <div id="binder_create_form">
+  <%= form_for Binder.new, url: '/binder/create' , remote: true do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.submit 'Create Binder' %>
   <% end %>
+ </div>
+
+ <div id="binder_destroy_form">
+  <%= form_tag '/binder/destroy',method: :delete, remote: true do |f| %>
+    <%= label_tag :title %>
+    <%= collection_select :binder, :binder_id, @binders, :id, :title %>
+    <%= submit_tag 'Destroy Binder' %>
+  <% end %>
+ </div>
+ 
+ <div id="upload">
+   <%= form_for Document.new, url: 'main/create', multiple: true do |f| %>
+     <%= f.file_field :file %>
+     <%= f.hidden_field :binder_id, valuer: @binder_id %>
+   <% end %>
+ </div>
 </div>
 
 <script id="template-upload" type="text/x-tmpl">

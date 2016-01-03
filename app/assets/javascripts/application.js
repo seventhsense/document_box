@@ -19,6 +19,7 @@
 //= require jquery-ui/dialog
 //= require jquery-ui/datepicker
 //= require jquery.poshytip.min
+//= require select2
 //= require dataTables/jquery.dataTables.api.fnReloadAjax
 //= require editable/jquery-editable-poshytip
 //= require editable/rails

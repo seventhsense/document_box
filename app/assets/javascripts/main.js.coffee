@@ -1,5 +1,6 @@
 $.fn.editable.defaults.mode = 'inline'
 $ ->
+  # datatable
   $('#files').dataTable
     bProcessing: true
     bServerSide: true
@@ -16,6 +17,7 @@ $ ->
       {bSortable: false}
     ]
 
+  # jquery fileupload
   $('#document_file').fileupload
     add: (e, data) ->
       data.context = $('<div><button>Start</button></div>').prepend('Upload')
@@ -33,6 +35,40 @@ $ ->
         .fadeOut("slow")
       $('#files').dataTable().api().ajax.reload()
 
-
+  # x editable
   $('#enable').click ->
     $('#files .editable').editable('toggleDisabled')
+
+  # select2
+  $('#binder').select2
+    width: 400
+    ajax:
+      url: '/binder/source.json'
+      dataType: 'json'
+      delay: 250
+      data: (params) ->
+        console.log params
+        q: params.term
+      processResults: (data, params) ->
+        console.log data
+        console.log params
+        results: $.map(data, (obj)->
+          id: obj.id
+          text: obj.title
+        )
+  $('#binder').on "change", (e) ->
+    id = $(@).val()
+    unless id
+      window.location.href = '/'
+    else
+      location.href = '/binder/' + id
+
+  # binder create form dialog
+  $('#create_binder').click (e) ->
+    e.preventDefault()
+    $('#binder_create_form').dialog()
+
+  # binder destroy form dialog
+  $('#destroy_binder').click (e) ->
+    e.preventDefault()
+    $('#binder_destroy_form').dialog()
