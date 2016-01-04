@@ -39,6 +39,11 @@ class MainController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
+    @document.update(document_params)
+  end
+
+  def update_by_form
+    @document = Document.find(params[:id])
     if @document.update(document_params)
       render :json => { head: :ok }
     end

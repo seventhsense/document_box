@@ -1,7 +1,5 @@
 $.fn.editable.defaults.mode = 'inline'
 $(document).on 'ready page:load',  ->
-  $('select').material_select()
-
   # datatable
   $('#files').dataTable
     bProcessing: true
@@ -18,6 +16,9 @@ $(document).on 'ready page:load',  ->
       {bSortable: false},
       {bSortable: false}
     ]
+    fnDrawCallback: ->
+      # materilize select
+      $('select').material_select()
 
   # jquery fileupload
   $('#document_file').fileupload
@@ -44,7 +45,6 @@ $(document).on 'ready page:load',  ->
   # select2
   $('#binder').select2
     width: 400
-    allowClear: true
     ajax:
       url: '/binder/source.json'
       dataType: 'json'
@@ -79,3 +79,4 @@ $(document).on 'ready page:load',  ->
     e.preventDefault()
     $('#binder_destroy_form').dialog
       title: 'Destroy Binder'
+

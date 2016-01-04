@@ -1,4 +1,3 @@
-<p>Document Information</p>
 <div class="wrapper clearfix">
   <div class="block_left">
     <p>
@@ -15,13 +14,13 @@
   </div>
 </div>
 <%= form_for document, url: '/main/' + document.id.to_s, remote: true do |f| %>
-  <p>Update file</p>
+  <p><b>Update file</b></p>
   <%= f.file_field :file %>
-  <p>Add Binder</p>
+  <p><b>Add Binder</b></p>
   <%= f.collection_select :binder_id, @binders, :id, :title, include_blank: true %>
   <%= f.submit class: 'btn waves-effect waves-light' %>
 <% end %>
-<p>Delete Document</p>
+<p><b>Delete Document</b></p>
 <%= link_to 'Delete',  document, method: :delete, remote: true, data: {confirm: 'Are you sure?'}, class: 'btn waves-effect waves-light'%>
 
 <script>

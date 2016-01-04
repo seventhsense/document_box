@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'main/:id' => 'main#show', as: :document
   post 'main/create' => 'main#create'
   patch 'main/:id' => 'main#update'
-  put 'main/:id' => 'main#update'
+  put 'main/:id' => 'main#update_by_form'
   delete 'main/:id' => 'main#destroy'
   
   get 'binder/source' => 'binders#source'

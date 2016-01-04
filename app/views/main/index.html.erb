@@ -59,7 +59,7 @@
  </div>
  
  <div id="upload">
-   <%= form_for Document.new, url: 'main/create', multiple: true do |f| %>
+   <%= form_for Document.new, url: '/main/create', multiple: true do |f| %>
      <%= f.file_field :file %>
      <%= f.hidden_field :binder_id, valuer: @binder_id %>
    <% end %>
