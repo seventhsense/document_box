@@ -28,5 +28,4 @@ class PdfToText
   def tmp_file_path
     [@tmp_path, @filename + ".txt"].join(File::SEPARATOR)
   end
- 
 end

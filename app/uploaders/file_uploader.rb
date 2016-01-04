@@ -32,16 +32,23 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :textize
+  process :textize, if: :is_document?
+
+  version :thumb, if: :is_image? do
     process :cover
     process :resize_to_fit => [200, 200]
     process :convert => 'jpg'
   end
 
   def textize
-    t = PdfToText.new current_path
-    model.body = t.excute
+    extname = File.extname current_path
+    if extname == '.pdf'
+      t = PdfToText.new current_path
+      model.body = t.excute
+    elsif extname == '.doc'
+      t = DocToText.new current_path
+      model.body = t.excute
+    end
   end
 
   def cover
@@ -50,10 +57,20 @@ class FileUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def is_image? file
+    extname = File.extname current_path
+    %[.jpg .jpeg .gif .png .pdf].include?(extname)
+  end
+
+  def is_document? file
+    extname = File.extname current_path
+    %[.pdf .doc].include?(extname)
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(jpg jpeg gif png pdf)
+    %w(jpg jpeg gif png pdf doc)
   end
 
   # Override the filename of the uploaded files:
