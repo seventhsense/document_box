@@ -30,12 +30,8 @@ $primary-color: color("brown", "darken-2") !default;
   list-style-type: none;
 }
 
-.progress {
-  width: 600px;
-  .bar {
-    height: 10px;
-    background-color: green;
-  }
+#delete_button{
+  color: white;
 }
 
 .block_left {

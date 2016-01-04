@@ -21,7 +21,7 @@
   <%= f.submit class: 'btn waves-effect waves-light' %>
 <% end %>
 <p><i class="material-icons">delete</i><b>Delete Document</b></p>
-<%= link_to 'Delete',  document, method: :delete, remote: true, data: {confirm: 'Are you sure?'}, class: 'btn waves-effect waves-light'%>
+<%= link_to 'Delete',  document, method: :delete, remote: true, data: {confirm: 'Are you sure?'}, class: 'btn waves-effect waves-light red', id: 'delete_button' %>
 
 <script>
   $('select').material_select()

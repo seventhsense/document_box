@@ -23,7 +23,11 @@ $(document).on 'ready page:load',  ->
   # jquery fileupload
   $('#document_file').fileupload
     add: (e, data) ->
-      data.context = $('<div>Upload<button class="btn">Start</button></div>')
+      console.log e
+      console.log data
+      console.log data.files[0].name
+      data.context = $('<div class="card-panel"><button class="btn right">Start</button></div>')
+        .prepend(data.files[0].name)
         .appendTo('#listing_upload')
         .click ->
           data.context = $(tmpl("template-upload", data.files[0]))

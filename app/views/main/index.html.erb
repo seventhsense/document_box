@@ -44,8 +44,10 @@
  
  <div id="binder_create_form">
   <%= form_for Binder.new, url: '/binder/create' , remote: true do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <p>
+     <%= f.label :title %>
+     <%= f.text_field :title %>
+    </p>
     <%= f.submit 'Create Binder', class: 'btn waves-effect waves-light' %>
   <% end %>
  </div>
@@ -54,9 +56,9 @@
   <%= form_tag '/binder/destroy',method: :delete, remote: true do |f| %>
     <p>
       <%= label_tag :title, 'select a binder to destroy' %>
-      <%= collection_select :binder, :binder_id, @binders, :id, :title %>
+      <%= collection_select :binder, :binder_id, @binders, :id, :title , class: 'browser-default'%>
     </p>
-    <%= submit_tag 'Destroy Binder',data: { confirm: 'Are you sure?' }, class: 'btn waves-effect waves-light' %>
+    <%= submit_tag 'Destroy Binder',data: { confirm: 'Are you sure?' }, class: 'btn waves-effect waves-light red' %>
   <% end %>
  </div>
  
@@ -69,8 +71,8 @@
 </div>
 
 <script id="template-upload" type="text/x-tmpl">
-<div class="upload">
+<div class="upload card-panel">
   {%=o.name%}
-  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+  <div class="progress"><div class="determinate" style="width: 0%"></div></div>
 </div>
 </script>
