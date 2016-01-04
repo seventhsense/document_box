@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103172746) do
+ActiveRecord::Schema.define(version: 20160104120712) do
 
   create_table "binders", force: :cascade do |t|
     t.string   "title"
@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(version: 20160103172746) do
     t.text     "content"
     t.string   "label"
     t.integer  "binder_id"
+    t.text     "body"
   end
 
   add_index "documents", ["author"], name: "index_documents_on_author"
   add_index "documents", ["binder_id"], name: "index_documents_on_binder_id"
+  add_index "documents", ["body"], name: "index_documents_on_body"
   add_index "documents", ["content"], name: "index_documents_on_content"
   add_index "documents", ["date"], name: "index_documents_on_date"
   add_index "documents", ["label"], name: "index_documents_on_label"

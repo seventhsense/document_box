@@ -33,9 +33,15 @@ class FileUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
+    process :textize
     process :cover
     process :resize_to_fit => [200, 200]
     process :convert => 'jpg'
+  end
+
+  def textize
+    t = PdfToText.new current_path
+    model.body = t.excute
   end
 
   def cover
