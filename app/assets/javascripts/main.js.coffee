@@ -23,9 +23,6 @@ $(document).on 'ready page:load',  ->
   # jquery fileupload
   $('#document_file').fileupload
     add: (e, data) ->
-      console.log e
-      console.log data
-      console.log data.files[0].name
       data.context = $('<div class="card-panel"><button class="btn right">Start</button></div>')
         .prepend(data.files[0].name)
         .appendTo('#listing_upload')
@@ -48,6 +45,7 @@ $(document).on 'ready page:load',  ->
 
   # select2
   $('#binder').select2
+    allowClear: true
     width: 400
     ajax:
       url: '/binder/source.json'
