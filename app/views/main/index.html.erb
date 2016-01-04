@@ -1,31 +1,42 @@
-<h1 id="brand"><%= link_to 'Document Box', '/' %></h1>
-<p>Drag and drop files.</p>
-<%= label_tag :binder, 'Binder' %>
-<%= select_tag :binder, options_from_collection_for_select(@binders, :id, :title, @binder_id), include_blank: true %>
-<button id="enable">Enable/Disable</button>
-<%= link_to 'Create Binder', '', id: 'create_binder' %>
-<%= link_to 'Destroy Binder', '', id: 'destroy_binder' %>
-<div id="main">
-  <div id="listing_upload"></div>
- <table id="files" data-source="<%= current_path %>">
-   <thead>
-     <tr>
-      <th>Label</th>
-      <th>Name</th>
-      <th>Author</th>
-      <th>Date</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-     </tr>
-   </thead>
-   <tbody> 
-   </tbody>
- </table>
- 
- <%# <div id="dd_space"> %>
-   <%# D&D HERE! %>
- <%# </div> %>
+<div class="navbar-fixed">
+  <nav>
+    <ul id="dropdown1" class="dropdown-content">
+    <li><%= link_to 'Create Binder', '', id: 'create_binder' %></li>
+    <li><%= link_to 'Destroy Binder', '', id: 'destroy_binder' %></li>
+    </ul>
+    <div class="nav-wrapper">
+      <%= link_to 'Document Box', '/' %>
+      <%= select_tag :binder, options_from_collection_for_select(@binders, :id, :title, @binder_id), class:"browser-default" %>
+      <%= label_tag :binder, 'Select Binder' %>
+    </form>
+    <ul class="right hide-on-med-and-down">
+      <li><button id="enable" class="waves-effect waves-light btn">Edit Enable/Disable</button></li>
+      <li><a class="dropdown-button" href="" data-activates="dropdown1">Binders</a></li>
+    </ul>
+  </div>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+     <div id="listing_upload"></div>
+     <table id="files" data-source="<%= current_path %>">
+       <thead>
+         <tr>
+           <th>Label</th>
+           <th>Name</th>
+           <th>Author</th>
+           <th>Date</th>
+           <th>Content</th>
+           <th></th>
+           <th></th>
+         </tr>
+       </thead>
+       <tbody> 
+       </tbody>
+     </table>
+    </div>
+  </div>
 </div>
 
 <div class="display_none">
@@ -35,7 +46,7 @@
   <%= form_for Binder.new, url: '/binder/create' , remote: true do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
-    <%= f.submit 'Create Binder' %>
+    <%= f.submit 'Create Binder', class: 'btn waves-effect waves-light' %>
   <% end %>
  </div>
 
@@ -43,7 +54,7 @@
   <%= form_tag '/binder/destroy',method: :delete, remote: true do |f| %>
     <%= label_tag :title %>
     <%= collection_select :binder, :binder_id, @binders, :id, :title %>
-    <%= submit_tag 'Destroy Binder' %>
+    <%= submit_tag 'Destroy Binder', class: 'btn waves-effect waves-light' %>
   <% end %>
  </div>
  

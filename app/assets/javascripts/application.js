@@ -23,4 +23,5 @@
 //= require dataTables/jquery.dataTables.api.fnReloadAjax
 //= require editable/jquery-editable-poshytip
 //= require editable/rails
+//= require materialize-sprockets
 //= require_tree .

@@ -54,3 +54,5 @@ gem 'jquery-ui-rails'
 gem 'x-editable-rails'
 gem 'select2-rails'
 gem 'era_ja'
+
+gem 'materialize-sass'

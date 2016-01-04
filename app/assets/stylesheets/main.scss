@@ -2,18 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 //
+.ui-dialog { z-index: 1000 !important ;}
+.ui-datepicker { z-index: 1000 !important; }
+@import "materialize/components/color";
+$primary-color: color("brown", "darken-2") !default;
+@import 'materialize';
 
-#main {
-  width: 800px;
-  margin: 0;
-}
+@import "materialize";
 
-#brand {
-  a {
-    text-decoration: none;
-    color: black;
-  }
-}
 
 #upload, #binder_create_form, #binder_destroy_form  {
   display: none;
@@ -22,6 +18,7 @@
 #files_wrapper {
   margin-top: 20px;
 }
+
 #files {
   margin: 0;
   padding: 0;
@@ -33,15 +30,6 @@
   .bar {
     height: 10px;
     background-color: green;
-  }
-}
-
-#files_filter {
-  label {
-    input {
-      width: 600px;
-      height: 30px;
-    }
   }
 }
 

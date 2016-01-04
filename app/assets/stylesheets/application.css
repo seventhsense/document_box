@@ -11,10 +11,11 @@
  * file per style scope.
  *
  *= require dataTables/jquery.dataTables
- *= require jquery-ui/dialog
+ *= require jquery-ui-1.11.4.custom/jquery-ui.min
+ *= require jquery-ui-1.11.4.custom/jquery-ui.structure.min
+ *= require jquery-ui-1.11.4.custom/jquery-ui.theme.min
  *= require tip-yellowsimple/tip-yellowsimple
  *= require select2
- *= require jquery-ui/datepicker
  *= require editable/jquery-editable
  *= require_tree .
  *= require_self

@@ -1,5 +1,7 @@
 $.fn.editable.defaults.mode = 'inline'
 $(document).on 'ready page:load',  ->
+  $('select').material_select()
+
   # datatable
   $('#files').dataTable
     bProcessing: true
@@ -69,9 +71,11 @@ $(document).on 'ready page:load',  ->
   # binder create form dialog
   $('#create_binder').click (e) ->
     e.preventDefault()
-    $('#binder_create_form').dialog()
+    $('#binder_create_form').dialog
+      title: 'Create Binder'
 
   # binder destroy form dialog
   $('#destroy_binder').click (e) ->
     e.preventDefault()
-    $('#binder_destroy_form').dialog()
+    $('#binder_destroy_form').dialog
+      title: 'Destroy Binder'
