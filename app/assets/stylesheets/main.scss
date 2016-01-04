@@ -4,14 +4,18 @@
 //
 .ui-dialog ,
 .ui-datepicker, 
-button.editable-submit { z-index: 10000 !important; }
+button.editable-submit { z-index: 1000 !important; }
 @import "materialize/components/color";
 $primary-color: color("brown", "darken-2") !default;
 @import 'materialize';
 
 @import "materialize";
 
-
+#files_filter {
+  input {
+    width: 612px;
+  }
+}
 #upload, #binder_create_form, #binder_destroy_form  {
   display: none;
 }

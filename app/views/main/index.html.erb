@@ -52,16 +52,18 @@
 
  <div id="binder_destroy_form">
   <%= form_tag '/binder/destroy',method: :delete, remote: true do |f| %>
-    <%= label_tag :title %>
-    <%= collection_select :binder, :binder_id, @binders, :id, :title %>
-    <%= submit_tag 'Destroy Binder', class: 'btn waves-effect waves-light' %>
+    <p>
+      <%= label_tag :title, 'select a binder to destroy' %>
+      <%= collection_select :binder, :binder_id, @binders, :id, :title %>
+    </p>
+    <%= submit_tag 'Destroy Binder',data: { confirm: 'Are you sure?' }, class: 'btn waves-effect waves-light' %>
   <% end %>
  </div>
  
  <div id="upload">
    <%= form_for Document.new, url: '/main/create', multiple: true do |f| %>
      <%= f.file_field :file %>
-     <%= f.hidden_field :binder_id, valuer: @binder_id %>
+     <%= f.hidden_field :binder_id, value: @binder_id %>
    <% end %>
  </div>
 </div>

@@ -18,12 +18,12 @@ $(document).on 'ready page:load',  ->
     ]
     fnDrawCallback: ->
       # materilize select
-      $('select').material_select()
+      $('#files_wrapper select').material_select()
 
   # jquery fileupload
   $('#document_file').fileupload
     add: (e, data) ->
-      data.context = $('<div><button>Start</button></div>').prepend('Upload')
+      data.context = $('<div>Upload<button class="btn">Start</button></div>')
         .appendTo('#listing_upload')
         .click ->
           data.context = $(tmpl("template-upload", data.files[0]))
@@ -50,15 +50,11 @@ $(document).on 'ready page:load',  ->
       dataType: 'json'
       delay: 250
       data: (params) ->
-        console.log params
         q: params.term
       processResults: (data, params) ->
-        console.log data
-        console.log params
-        results: $.map(data, (obj)->
+        results: $.map data, (obj)->
           id: obj.id
           text: obj.title
-        )
 
   # select2 move 
   $('#binder').on "change", (e) ->
@@ -79,4 +75,17 @@ $(document).on 'ready page:load',  ->
     e.preventDefault()
     $('#binder_destroy_form').dialog
       title: 'Destroy Binder'
-
+      width: 320
+      open: ->
+        $('#binder_binder_id').select2
+          width: 200
+          ajax:
+            url: '/binder/source.json'
+            dataType: 'json'
+            delay: 250
+            data: (params) ->
+              q: params.term
+            processResults: (data, params) ->
+              results: $.map data, (obj)->
+                id: obj.id
+                text: obj.title

@@ -1,7 +1,4 @@
 class BindersController < ApplicationController
-  def new
-  end
-
   def create
     @binder = Binder.new(binder_params)
     @binder.save
@@ -15,7 +12,7 @@ class BindersController < ApplicationController
 
   def source
     q = params[:q]
-    @binders = Binder.where('title like :q', q: "%#{q}%")
+    @binders = Binder.where('title like :q', q: "%#{q}%").limit(10)
     render json: @binders
   end
 
