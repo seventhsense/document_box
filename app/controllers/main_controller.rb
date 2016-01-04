@@ -18,7 +18,7 @@ class MainController < ApplicationController
     @display_documents = Document
       .filtered_by_binder(@binder_id)
       .where("label like :search or name like :search or author like :search or content like :search", search: "%#{sSearch}%")
-      .order("#{sort_column} #{sort_direction}")
+      .order("#{sort_column} IS NULL, #{sort_column} #{sort_direction}")
     @documents = @display_documents.page(page).per(per_page)
     @sEcho = params[:sEcho].to_i
   end
