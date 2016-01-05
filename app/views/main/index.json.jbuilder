@@ -8,8 +8,7 @@ json.aaData @documents do |document|
                editable(document, :author),
                editable(document, :date, type: :date),
                editable(document, :content, type: :textarea),
-               link_to(image_tag(document.file_url(:thumb)), document.file_url,
-                      target: '_blank'),
+               thumb_link(document.file_url(:thumb), document.file_url),
                "#{link_to 'Detail', document_path(document), remote: true}"
   ]
 end

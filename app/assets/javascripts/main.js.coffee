@@ -23,13 +23,14 @@ $(document).on 'ready page:load',  ->
   # jquery fileupload
   $('#document_file').fileupload
     add: (e, data) ->
-      data.context = $('<div class="card-panel"><button class="btn right">Start</button></div>')
+      data.context = $('<div class="card-panel"><button class="btn waves-effect waves-light right">Upload Start</button></div>')
         .prepend(data.files[0].name)
         .appendTo('#listing_upload')
         .click ->
           data.context = $(tmpl("template-upload", data.files[0]))
           $(@).replaceWith(data.context)
           data.submit()
+      $("html,body").animate({scrollTop:0},"300")
     progress: (e, data) ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)

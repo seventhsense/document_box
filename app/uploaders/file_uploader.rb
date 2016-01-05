@@ -35,9 +35,9 @@ class FileUploader < CarrierWave::Uploader::Base
   process :textize, if: :is_document?
 
   version :thumb, if: :is_image? do
-    process :cover
-    process :resize_to_fit => [200, 200]
-    process :convert => 'jpg'
+    process :cover, if: :is_pdf?
+    process :resize_to_fit => [200, 200], if: :is_image?
+    process :convert => 'jpg', if: :is_pdf?
   end
 
   def textize
@@ -62,10 +62,21 @@ class FileUploader < CarrierWave::Uploader::Base
     %[.jpg .jpeg .gif .png .pdf].include?(extname)
   end
 
+  def is_pdf? file
+    extname = File.extname current_path
+    %[.pdf].include?(extname)
+  end
+
   def is_document? file
     extname = File.extname current_path
     %[.pdf .doc .docx].include?(extname)
   end
+
+  def is_doc? file
+    extname = File.extname current_path
+    %[.doc .docx].include?(extname)
+  end
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
