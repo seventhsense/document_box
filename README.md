@@ -1,7 +1,8 @@
 ## feature
-* drag and drop files
+* drag and drop to upload files
 * filtering and sorting by datatable
-* fulltext search
+* in place edit file's profile from datatable
+* filtering by fulltext search
 * filtering by binder
 
 ## requirement
