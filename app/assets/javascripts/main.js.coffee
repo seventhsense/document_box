@@ -47,6 +47,7 @@ $(document).on 'ready page:load',  ->
   # select2
   $('#binder').select2
     allowClear: true
+    placeholder: 'select binder'
     width: 400
     ajax:
       url: '/binder/source.json'
