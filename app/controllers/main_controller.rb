@@ -3,7 +3,7 @@ class MainController < ApplicationController
     @binders = Binder.all
     @binder_id = params[:id]
 
-    sSearch = params[:sSearch]
+    sSearch = params[:sSearch] || ''
     iDisplayStart = params[:iDisplayStart].to_i
     iDisplayLength = params[:iDisplayLength].to_i
     iSortCol_0 = params[:iSortCol_0].to_i
@@ -17,7 +17,7 @@ class MainController < ApplicationController
     sort_direction = sSortDir_0 == "desc" ? "desc" : "asc"
     @display_documents = Document
       .filtered_by_binder(@binder_id)
-      .where("label like :search or name like :search or author like :search or content like :search or body like :search", search: "%#{sSearch}%")
+      .search(sSearch)
       .order("#{sort_column} IS NULL, #{sort_column} #{sort_direction}")
     @documents = @display_documents.page(page).per(per_page)
     @sEcho = params[:sEcho].to_i

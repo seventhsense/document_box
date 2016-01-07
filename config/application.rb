@@ -25,5 +25,6 @@ module DocumentBox
     config.active_record.raise_in_transactional_callbacks = true
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.autoload_paths += ["#{config.root}/lib"]
   end
 end

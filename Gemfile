@@ -56,3 +56,5 @@ gem 'select2-rails'
 gem 'era_ja'
 
 gem 'materialize-sass'
+
+gem 'rroonga'
