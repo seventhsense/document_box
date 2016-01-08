@@ -8,7 +8,7 @@
       <%= link_to 'Document Box', '/', class: 'tooltipped', 'data-position' => 'bottom', 'data-tooltip' => 'Go to Top', 'data-delay' => 30 %>
       <%= select_tag :binder, options_from_collection_for_select(@binders, :id, :title, @binder_id), class:"browser-default" %>
     <ul class="right hide-on-med-and-down">
-      <li><button id="enable" class="waves-effect waves-light btn tooltipped" data-position="bottom" data-tooltip="Edit datatable property" data-delay="30">Edit Enable/Disable</button></li>
+      <li><button id="enable" class="waves-effect waves-light btn tooltipped" data-position="bottom" data-tooltip="Edit documents' attributes" data-delay="30">Edit Enable/Disable</button></li>
       <li><a class="dropdown-button tooltipped" href="" data-activates="dropdown1" data-position="bottom" data-delay="30" data-tooltip="Create/Destroy Binder">Binders</a></li>
     </ul>
   </div>

@@ -1,7 +1,7 @@
 <div class="wrapper clearfix">
   <div class="block_left">
     <p>
-      <%= thumb_link document.file_url(:thumb), document.file_url %>
+      <%= thumb_link document.file_url(:thumb), document.file_url, 200 %>
     </p>
   </div>
   <div class="block_right">
@@ -15,14 +15,18 @@
 </div>
 <%= form_for document, url: '/main/' + document.id.to_s, remote: true do |f| %>
   <p><i class="material-icons">loop</i><b>Update file</b></p>
-  <%= f.file_field :file %>
+  <p><%= f.file_field :file %></p>
   <p><i class="material-icons">playlist_add</i><b>Add Binder</b></p>
-  <%= f.collection_select :binder_id, @binders, :id, :title, include_blank: true %>
-  <%= f.submit class: 'btn waves-effect waves-light' %>
+  <p><%= f.collection_select :binder_id, @binders, :id, :title, include_blank: true %></p>
+  <div class="action">
+   <%= f.submit class: 'btn waves-effect waves-light' %>
+  </div>
 <% end %>
 <p><i class="material-icons">delete</i><b>Delete Document</b></p>
 <%= link_to 'Delete',  document, method: :delete, remote: true, data: {confirm: 'Are you sure?'}, class: 'btn waves-effect waves-light red', id: 'delete_button' %>
 
 <script>
-  $('select').material_select()
+  $('select').select2({
+    width: 400
+  });
 </script>
