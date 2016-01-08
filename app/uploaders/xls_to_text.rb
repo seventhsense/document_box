@@ -1,33 +1,31 @@
-class DocToText
+class XlsToText
   def initialize(path)
     @file_path = File.dirname path
     @tmp_path = @file_path
     @extname = File.extname path
     @filename = File.basename path, @extname
   end
- 
+
   def excute
+    t = ''
     begin
-      if @extname == '.doc'
-        system("wvText #{doc_file_path} #{tmp_file_path}")
-      else
-        system("docx2txt #{doc_file_path} #{tmp_file_path}")
+      if @extname == '.xlsx'
+        xls = Roo::Spreadsheet.open xls_file_path
+      else # @extname == 'xls'
+        xls = Roo::Excel.new xls_file_path
       end
     rescue Exception => e
       puts e.message
       puts e.backtrace.inspect
     ensure
-      text = File.read tmp_file_path
-      File.delete tmp_file_path
+      xls.sheets.each do |sheet|
+        t << xls.sheet(sheet).to_csv
+      end
     end
-    return text
+    return t
   end
- 
-  def doc_file_path
+
+  def xls_file_path
     [@file_path, @filename + @extname].join(File::SEPARATOR)
-  end
- 
-  def tmp_file_path
-    [@tmp_path, @filename + ".txt"].join(File::SEPARATOR)
   end
 end

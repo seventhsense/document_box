@@ -58,3 +58,6 @@ gem 'era_ja'
 gem 'materialize-sass'
 
 gem 'rroonga'
+
+gem 'roo'
+gem 'roo-xls'

@@ -48,6 +48,9 @@ class FileUploader < CarrierWave::Uploader::Base
     elsif extname == '.doc' or extname == '.docx'
       t = DocToText.new current_path
       model.body = t.excute
+    else
+      t = XlsToText.new current_path
+      model.body = t.excute
     end
   end
 
@@ -69,7 +72,7 @@ class FileUploader < CarrierWave::Uploader::Base
 
   def is_document? file
     extname = File.extname current_path
-    %[.pdf .doc .docx].include?(extname)
+    %[.pdf .doc .docx .xls .xlsx].include?(extname)
   end
 
   def is_doc? file
@@ -81,7 +84,7 @@ class FileUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(jpg jpeg gif png pdf doc docx)
+    %w(jpg jpeg gif png pdf doc docx xls xlsx)
   end
 
   # Override the filename of the uploaded files:

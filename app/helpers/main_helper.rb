@@ -15,10 +15,12 @@ module MainHelper
     if File.exist? 'public/' + thumb_path
       link_to image_tag(thumb_path), link_path, target: '_blank'
     elsif File.extname(thumb_path) == '.doc'
-      link_to image_tag('/Microsoft Office 2003 Word.png'), link_path, target: '_blank'
-    else
+      link_to image_tag('/Microsoft Office 2003 Word.png', height:64), link_path, target: '_blank'
+    elsif File.extname(thumb_path) == '.docx'
 
-      link_to image_tag('/Microsoft Office 2007 Word.png'), link_path, target: '_blank'
+      link_to image_tag('/Microsoft Office 2007 Word.png', height:64), link_path, target: '_blank'
+    else
+      link_to 'download', link_path, target: '_blank'
     end
   end
 end
