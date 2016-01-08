@@ -93,3 +93,5 @@ $(document).on 'ready page:load',  ->
               results: $.map data, (obj)->
                 id: obj.id
                 text: obj.title
+  # activate tooltip
+  $('.tooltipped').tooltip()
