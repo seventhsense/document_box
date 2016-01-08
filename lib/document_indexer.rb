@@ -8,6 +8,7 @@ class DocumentIndexer
     id = attributes.delete('id')
     attributes.delete('file')
     attributes.delete('binder_id')
+    attributes.delete('date')
     @documents.add(id, attributes)
   end
 
